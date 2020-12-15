@@ -1,6 +1,8 @@
 <template>
     <div class="nc-header">
-        header
+        <div>
+            <i class="iconfont icon-netease-cloud-music-logo"></i>
+        </div>
     </div>
 </template>
 

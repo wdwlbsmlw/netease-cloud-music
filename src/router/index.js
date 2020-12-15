@@ -5,10 +5,10 @@ import video from './route/video'
 const routes = [
     ...discover,
     ...video,
-    // {
-    //     path: '*',
-    //     redirect: '/discover/recommend'
-    // }
+    {
+        path: '',
+        redirect: '/discover'
+    }
 ]
 
 const router = createRouter({

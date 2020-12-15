@@ -1,11 +1,12 @@
 <template>
     <div class="page-wrapper">
-        <n-list v-if="table.code > 0">
+        <n-list v-if="table.total > 0">
             <n-list-item v-for="item in table.playlists" :key="item.id">
                 <n-box :cover="item.coverImgUrl" :name="item.name" :play-count="item.playCount" :author="item.creator"></n-box>
             </n-list-item>
         </n-list>
-        <n-pager :total="table.total" :page="page"></n-pager>
+        <n-pager :total="table.total" :page="page" :page-size="pageSize"></n-pager>
+        {{ page }}
     </div>
 </template>
 
@@ -20,16 +21,24 @@ export default {
     name: 'DiscoverSongList',
 
     setup() {
-        let table = reactive({})
         let page = ref(1)
-        GetTopPlayList().then(data => {
+        let pageSize = ref(15)
+        let _params = {
+            order: 'hot',
+            cat: '全部',
+            limit: pageSize.value,
+            offset: (page.value - 1) * pageSize.value
+        }
+        let table = reactive({})
+        GetTopPlayList(_params).then(data => {
             table.playlists = reactive(data.playlists)
             table.total = ref(data.total)
             table.more = ref(data.more)
-            table.code = ref(data.code)
         })
+        
         return {
             page,
+            pageSize,
             table
         }
     }

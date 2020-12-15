@@ -27,5 +27,11 @@ export default {
     truncate: (val, len = 20) => {
         if (val === null || val === undefined || isNaN(val)) return ''
         return val.toString().length > len ? val.toString().substr(0, len) + '...' : val
+    },
+    // 数字转换
+    numConvert: (val, split = 100000, base = 10000) => {
+        val = Number(val)
+        if (isNaN(val)) return 0
+        return val >= split ? `${Math.floor(val/base)} 万` : val
     }
 }

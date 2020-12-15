@@ -11,13 +11,13 @@ export default {
 
     props: {
         col: {
-            type: Number,
-            validator: val => [3, 5, 6].includes(val)
+            type: [Number, String],
+            validator: val => [3, 4, 5, 6].includes(Number(val))
         }
     },
 
     setup(props) {
-        let className = computed(() => `nc-list nc-list-col-${props.col}`)
+        let className = computed(() => `nc-list col-${props.col}`)
         return {
             className
         }
