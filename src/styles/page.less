@@ -1,0 +1,44 @@
+.page {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    &-nav {
+        margin: 12px 0;
+        padding: 0 30px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+
+        a {
+            height: 36px;
+            line-height: 36px;
+            text-decoration: none;
+            font-size: @font-size-middle;
+            color: @text-color-primary;
+            margin-right: 26px;
+
+            &.router-link-active {
+                font-size: @font-size-large;
+                font-weight: bold;
+            }
+
+            &:hover {
+                color: @white-color;
+            }
+        }
+    }
+
+    &-cont {
+        flex: 1;
+        padding: 30px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        &:hover {
+            &::-webkit-scrollbar-thumb {
+                background-color: @border-color-base;
+            }
+        }
+    }
+}
