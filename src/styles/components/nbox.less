@@ -1,0 +1,67 @@
+.nc-box {
+    &-image {
+        height: 0;
+        width: 100%;
+        padding-bottom: 100%;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: @border-radius-middle;
+        overflow: hidden;
+
+        & > span {
+            position: absolute;
+            padding: 2px 6px;
+            line-height: 20px;
+            color: @white-color;
+            font-size: @font-size-small;
+            display: flex;
+            align-items: center;
+
+            & > img {
+                width: @font-size-small;
+                margin-left: 4px;
+            }
+        }
+
+        &:hover .nc-box-play{
+            display: flex !important;
+        }
+    }
+    
+    &-playcount {
+        top: 0;
+        right: 0;
+    }
+    &-author {
+        left: 0;
+        bottom: 0;
+    }
+    &-play {
+        right: 10px;
+        bottom: 10px;
+        display: none !important;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: @white-color;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        i {
+            font-size: @font-size-large;
+            color: @primary-color;
+        }
+    }
+
+    & > p {
+        margin: 10px 0;
+        font-size: @font-size-base;
+        color: @text-color-primary;
+        line-height: 22px;
+        height: 44px;
+        overflow: hidden;
+    }
+}
