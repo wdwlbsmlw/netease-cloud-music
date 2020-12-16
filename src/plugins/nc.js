@@ -6,6 +6,7 @@ import NLoading from '@/components/NLoading'
 import NButton from '@/components/NButton'
 import NPopover from '@/components/NPopover'
 import NCatlist from '@/components/NCatlist'
+import NFastlist from '@/components/NFastlist'
 
 export default {
     NList,
@@ -15,5 +16,6 @@ export default {
     NLoading,
     NButton,
     NPopover,
-    NCatlist
+    NCatlist,
+    NFastlist
 }

@@ -5,16 +5,17 @@
                 <template v-slot:reference>
                     <n-button has-arrow round>{{ params.cat }}</n-button>
                 </template>
-                <n-catlist v-model="params.cat" @change="onCatlistChange"></n-catlist>
+                <n-catlist v-model="params.cat" v-model:hot="hotTop" @change="visibleHandle(false)"></n-catlist>
             </n-popover>
+            <n-fastlist v-model="params.cat" :list="hotTop"></n-fastlist>
         </div>
-        <n-loading v-if="loading"></n-loading>
-        <n-list v-if="table.total > 0" v-show="!loading">
-            <n-list-item v-for="item in table.playlists" :key="item.id">
+        <n-loading v-if="tables.loading"></n-loading>
+        <n-list v-if="tables.total > 0" v-show="!tables.loading">
+            <n-list-item v-for="item in tables.list" :key="item.id">
                 <n-box :cover="item.coverImgUrl" :name="item.name" :play-count="item.playCount" :author="item.creator"></n-box>
             </n-list-item>
         </n-list>
-        <n-pager v-show="!loading" :total="table.total" v-model:page="params.page" :page-size="params.pageSize" @change="onPageChange"></n-pager>
+        <n-pager v-show="!tables.loading" :total="tables.total" v-model:page="tables.page" :page-size="tables.pageSize" @change="getList"></n-pager>
     </div>
 </template>
 
@@ -24,61 +25,32 @@
  */
 import { ref, reactive } from 'vue'
 import { GetTopPlayList } from '@/api'
+import {useGetDataHooks} from '@/mixins/index'
 
 export default {
     name: 'DiscoverSongList',
 
     setup() {
+        // popover
         let visible = ref(false)
-        let loading = ref(false)
-        let params = reactive({ order: 'hot', page: 1, pageSize: 50, cat: '全部'})
-        
-        let table = reactive({})
-        // 获取数据
-        const getList = () => {
-            loading.value = true
-            clearData()
-            const _params = {
-                order: params.order,
-                cat: params.cat,
-                limit: params.pageSize,
-                offset: (params.page - 1) * params.pageSize
-            }
-            GetTopPlayList(_params).then(data => {
-                table.playlists = reactive(data.playlists)
-                table.total = ref(data.total)
-                loading.value = false
-            }).catch(() => {
-                loading.value = false
-            })
-        }
+        const visibleHandle = (val = false) => visible.value = val
 
-        // 清空数据
-        const clearData = () => {
-            table.playlists = reactive([])
-            table.total = ref(0)
-        }
-        // 分页回调
-        const onPageChange = () => {
-            getList()
-        }
+        // list params
+        let params = reactive({ order: 'hot', cat: '全部' })
 
-        // 选择分类回调
-        const onCatlistChange = () => {
-            params.page = 1
-            visible.value = false
-            getList()
-        }
+        // list hook
+        let { tables, getList } = useGetDataHooks('playlists', GetTopPlayList, params)
 
-        getList()
+        // 热门列表
+        let hotTop = reactive([])
         
         return {
-            params,
             visible,
-            loading,
-            table,
-            onPageChange,
-            onCatlistChange
+            params,
+            tables,
+            getList,
+            visibleHandle,
+            hotTop
         }
     }
 }

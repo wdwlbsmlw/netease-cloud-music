@@ -29,6 +29,10 @@ export default {
         modelValue: {
             type: String,
             default: '全部'
+        },
+        hot: {
+            type: Array,
+            default: () => []
         }
     },
 
@@ -57,12 +61,18 @@ export default {
             data = reactive({})
             GetPlaylistCatlist().then(res => {
                 data.categories = reactive(res.categories)
-                let _sub = {}
+                let _sub = {},_hot = []
                 res.sub.forEach(el => {
                     if (!Object.prototype.hasOwnProperty.call(_sub, el.category)) _sub[el.category] = []
                     if (el.name) _sub[el.category].push(el)
                 })
                 data.sub = reactive(_sub)
+                Object.keys(_sub).forEach(key => {
+                    _sub[key].forEach(el => {
+                        if (el.hot && el.name) _hot.push(el.name)
+                    })
+                })
+                context.emit('update:hot', _hot)
             })
         }
         getList()
