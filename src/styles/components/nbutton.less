@@ -1,0 +1,55 @@
+.nc-button {
+    height: @button-height;
+    line-height: @button-height;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 @button-height / 2;
+    border-radius: @border-radius-base;
+    border: 1px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: @font-size-base;
+
+    span {
+        padding: 0 4px;
+    }
+
+    i.iconfont {
+        color: @text-color-regular;
+    }
+
+    &.is-round {
+        border-radius: @button-height / 2;
+    }
+
+    &-default {
+        color: @text-color-primary;
+        background-color: @button-default-fill-color;
+        border-color: @button-default-border-color;
+
+        &:hover {
+            background-color: @button-default-fill-hover;
+        }
+    }
+
+    &-primary {
+        color: @white-color;
+        background-color: @button-primary-fill-color;
+        border-color: @button-primary-border-color;
+
+        &:hover {
+            background-color: @button-primary-fill-hover;
+        }
+
+        i.iconfont {
+            color: @white-color;
+        }
+
+        &.is-plain {
+            color: @primary-color;
+            background-color: fade(@primary-color, 10%);
+            border-color: fade(@primary-color, 10%);
+        }
+    }
+}

@@ -2,8 +2,8 @@
     <div class="nc-box">
         <div class="nc-box-image" :class="{ 'is-square': isSquare }" :style="imageStyles">
             <img v-if="!isSquare" :src="cover">
-            <span class="nc-box-playcount">{{ playCountLabel }}</span>
-            <span class="nc-box-author">{{ author.nickname }} <img v-if="author.avatarDetail" :src="author.avatarDetail.identityIconUrl"></span>
+            <span class="nc-box-playcount"><i class="iconfont icon-play-line"></i> {{ playCountLabel }}</span>
+            <span class="nc-box-author"><i class="iconfont icon-account"></i> {{ author.nickname }} <img v-if="author.avatarDetail" :src="author.avatarDetail.identityIconUrl"></span>
             <span class="nc-box-play">
                 <i class="iconfont icon-play"></i>
             </span>

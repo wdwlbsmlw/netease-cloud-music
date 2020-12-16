@@ -12,6 +12,7 @@ export default {
     props: {
         col: {
             type: [Number, String],
+            default: 5,
             validator: val => [3, 4, 5, 6].includes(Number(val))
         }
     },
