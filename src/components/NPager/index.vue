@@ -109,8 +109,14 @@ export default {
             currentPage.value++
         }
         const onMoreHandle = type => {
-            if (type === 'prev') currentPage.value -= props.pagerCount - 2
-            else if (type === 'next') currentPage.value += props.pagerCount - 2
+            if (type === 'prev') {
+                currentPage.value -= props.pagerCount - 2
+                onMoreLeave('left')
+            }
+            else if (type === 'next') {
+                currentPage.value += props.pagerCount - 2
+                onMoreLeave('right')
+            }
         }
         return {
             currentPage,

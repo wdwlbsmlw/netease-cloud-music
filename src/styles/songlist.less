@@ -32,11 +32,51 @@
 
         &-author {
             line-height: 1;
-            padding-top: @gutter-width / 2;
+            padding-top: @gutter-width / 4;
 
             & > span {
-                padding-left: 10px;
                 color: @text-color-secondary;
+                font-size: @font-size-small;
+            }
+        }
+
+        &-oper {
+            line-height: 1;
+            padding: 14px 0;
+
+            .nc-button {
+                margin-right: @gutter-width / 2
+            }
+        }
+
+        &-info {
+            line-height: 22px;
+            font-size: @font-size-small;
+
+            p {
+                color: @text-color-secondary;
+                padding-right: @gutter-width * 1.5;
+                position: relative;
+
+                label {
+                    color: @text-color-primary;
+                }
+                span {
+                    color: @text-color-secondary;
+                    margin-right: @gutter-width;
+                }
+                & > i {
+                    color: @text-color-primary;
+                    padding: 0 4px;
+                    font-style: normal;
+
+                    &.arrow {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

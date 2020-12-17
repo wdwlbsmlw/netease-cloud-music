@@ -1,7 +1,7 @@
 <template>
     <div class="nc-box">
-        <div class="nc-box-image" :class="{ 'is-square': isSquare, 'has-link': hasLink }" :style="imageStyles" @click="onLinkHandle">
-            <img v-if="!isSquare" :src="cover">
+        <div class="nc-box-image" :class="{ 'is-square': isSquare, 'has-link': hasLink }" :style="imageStyles">
+            <img v-if="isSquare" :src="cover" @click="onLinkHandle">
             <span class="nc-box-playcount"><i class="iconfont icon-play-line"></i> {{ playCountLabel }}</span>
             <span class="nc-box-author"><i class="iconfont icon-account"></i> {{ author.nickname }} <img v-if="author.avatarDetail" :src="author.avatarDetail.identityIconUrl"></span>
             <span class="nc-box-play">
