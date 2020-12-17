@@ -4,7 +4,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 @button-height / 2;
+    padding: 0 @button-height / 2 - @font-size-base / 2;
     border-radius: @border-radius-base;
     border: 1px solid transparent;
     background-color: transparent;
@@ -13,6 +13,19 @@
 
     span {
         padding: 0 4px;
+    }
+
+    &-size-small {
+        height: @button-height-small;
+        line-height: @button-height-small;
+    }
+    &-size-default {
+        height: @button-height;
+        line-height: @button-height;
+    }
+    &-size-large {
+        height: @button-height-large;
+        line-height: @button-height-large;
     }
 
     i.iconfont {

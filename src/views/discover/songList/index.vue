@@ -25,12 +25,15 @@
  */
 import { ref, reactive } from 'vue'
 import { GetTopPlayList } from '@/api'
-import {useGetDataHooks} from '@/mixins/index'
+import {useGetDataHooks} from '@/hooks/index'
 
 export default {
     name: 'DiscoverSongList',
 
     setup() {
+        // 热门列表
+        let hotTop = reactive([])
+        
         // popover
         let visible = ref(false)
         const visibleHandle = (val = false) => visible.value = val
@@ -40,9 +43,6 @@ export default {
 
         // list hook
         let { tables, getList } = useGetDataHooks('playlists', GetTopPlayList, params)
-
-        // 热门列表
-        let hotTop = reactive([])
         
         return {
             visible,

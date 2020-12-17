@@ -8,4 +8,20 @@
     background-color: @background-color-dark;
     border-bottom: 1px solid @border-color-base;
     color: @white-color;
+    display: flex;
+    align-items: center;
+
+    &-logo {
+        margin: 0 @gutter-width;
+    }
+
+    &-search {
+        margin: 0 @gutter-width;
+        display: flex;
+        align-items: center;
+
+        & > * {
+            margin: 0 @gutter-width / 4;
+        }
+    }
 }

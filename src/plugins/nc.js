@@ -7,6 +7,7 @@ import NButton from '@/components/NButton'
 import NPopover from '@/components/NPopover'
 import NCatlist from '@/components/NCatlist'
 import NFastlist from '@/components/NFastlist'
+import NSearch from '@/components/NSearch'
 
 export default {
     NList,
@@ -17,5 +18,6 @@ export default {
     NButton,
     NPopover,
     NCatlist,
-    NFastlist
+    NFastlist,
+    NSearch
 }

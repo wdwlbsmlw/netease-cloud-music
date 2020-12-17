@@ -1,7 +1,7 @@
 <template>
     <button class="nc-button" :class="buttonClasses" :disabled="disabled">
         <i v-if="icon" :class="`iconfont ${icon}`"></i>
-        <span>
+        <span v-if="$slots.default">
             <slot></slot>
         </span>
         <i v-if="hasArrow" class="iconfont icon-arrow-right arrow"></i>
@@ -32,6 +32,11 @@ export default {
             type: String,
             default: 'default',
             validator: val => ['default', 'primary'].includes(val)
+        },
+        size: {
+            type: String,
+            default: 'default',
+            validator: val => ['small', 'default', 'large'].includes(val)
         }
     },
 
@@ -40,7 +45,8 @@ export default {
             return {
                 'is-round': props.round,
                 'is-plain': props.plain,
-                [`nc-button-${props.type}`]: true
+                [`nc-button-${props.type}`]: true,
+                [`nc-button-size-${props.size}`]: true
             }
         })
         return {

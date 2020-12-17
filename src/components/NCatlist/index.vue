@@ -56,12 +56,16 @@ export default {
         }
         const onHandleAll = () => currentValue.value = '全部'
 
+        let hot = ref([])
+        watch(hot, val => context.emit('update:hot', val))
+
         let data = reactive({})
         const getList = () => {
             data = reactive({})
+            hot.value = []
             GetPlaylistCatlist().then(res => {
                 data.categories = reactive(res.categories)
-                let _sub = {},_hot = []
+                let _sub = {}
                 res.sub.forEach(el => {
                     if (!Object.prototype.hasOwnProperty.call(_sub, el.category)) _sub[el.category] = []
                     if (el.name) _sub[el.category].push(el)
@@ -69,10 +73,9 @@ export default {
                 data.sub = reactive(_sub)
                 Object.keys(_sub).forEach(key => {
                     _sub[key].forEach(el => {
-                        if (el.hot && el.name) _hot.push(el.name)
+                        if (el.hot && el.name) hot.value.push(el.name)
                     })
                 })
-                context.emit('update:hot', _hot)
             })
         }
         getList()

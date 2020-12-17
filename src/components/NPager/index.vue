@@ -3,9 +3,13 @@
         <ul>
             <li class="arrow" :class="{disabled: currentPage === 1}" @click="onPrev">&lt;</li>
             <li :class="{ active: currentPage === 1 }" @click="onHandle(1)">1</li>
-            <li v-if="showPrevMore" class="more">...</li>
+            <li v-if="showPrevMore" class="more" @click="onMoreHandle('prev')" @mouseenter="onMoreEnter('left')" @mouseleave="onMoreLeave('left')">
+                <i :class="`iconfont ${quickPrevIconClass}`"></i>
+            </li>
             <li v-for="pager in pagers" :key="pager" :class="{ active: currentPage === pager }" @click="onHandle(pager)">{{ pager }}</li>
-            <li v-if="showNextMore" class="more">...</li>
+            <li v-if="showNextMore" class="more" @click="onMoreHandle('next')" @mouseenter="onMoreEnter('right')" @mouseleave="onMoreLeave('right')">
+                <i :class="`iconfont ${quickNextIconClass}`"></i>
+            </li>
             <li :class="{ active: currentPage === pageCount }" v-if="pageCount > 1" @click="onHandle(pageCount)">{{ pageCount }}</li>
             <li class="arrow" :class="{disabled: currentPage === pageCount}" @click="onNext">&gt;</li>
         </ul>
@@ -86,6 +90,12 @@ export default {
             return array
         })
 
+        // pager more
+        let quickPrevIconClass = ref('icon-more')
+        let quickNextIconClass = ref('icon-more')
+        const onMoreEnter = type => type === 'left' ? quickPrevIconClass.value = `icon-arrow-double-${type}` : quickNextIconClass.value = `icon-arrow-double-${type}`
+        const onMoreLeave = type => type === 'left' ? quickPrevIconClass.value = `icon-more` : quickNextIconClass.value = `icon-more`
+
         // methods
         const onHandle = val => {
             currentPage.value = val
@@ -98,16 +108,24 @@ export default {
             if (currentPage.value === pageCount.value) return
             currentPage.value++
         }
+        const onMoreHandle = type => {
+            if (type === 'prev') currentPage.value -= props.pagerCount - 2
+            else if (type === 'next') currentPage.value += props.pagerCount - 2
+        }
         return {
             currentPage,
             pageCount,
             pagers,
             showPrevMore,
             showNextMore,
-
+            quickPrevIconClass,
+            quickNextIconClass,
+            onMoreEnter,
+            onMoreLeave,
             onHandle,
             onPrev,
             onNext,
+            onMoreHandle
         }
     },
 }
