@@ -1,7 +1,9 @@
 <template>
     <div class="nc-pager">
         <ul>
-            <li class="arrow" :class="{disabled: currentPage === 1}" @click="onPrev">&lt;</li>
+            <li class="arrow" :class="{disabled: currentPage === 1}" @click="onPrev">
+                <i class="iconfont icon-arrow-left"></i>
+            </li>
             <li :class="{ active: currentPage === 1 }" @click="onHandle(1)">1</li>
             <li v-if="showPrevMore" class="more" @click="onMoreHandle('prev')" @mouseenter="onMoreEnter('left')" @mouseleave="onMoreLeave('left')">
                 <i :class="`iconfont ${quickPrevIconClass}`"></i>
@@ -11,7 +13,9 @@
                 <i :class="`iconfont ${quickNextIconClass}`"></i>
             </li>
             <li :class="{ active: currentPage === pageCount }" v-if="pageCount > 1" @click="onHandle(pageCount)">{{ pageCount }}</li>
-            <li class="arrow" :class="{disabled: currentPage === pageCount}" @click="onNext">&gt;</li>
+            <li class="arrow" :class="{disabled: currentPage === pageCount}" @click="onNext">
+                <i class="iconfont icon-arrow-right"></i>
+            </li>
         </ul>
     </div>
 </template>

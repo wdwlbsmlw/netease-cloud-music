@@ -34,7 +34,7 @@
                 </p>
                 <p class="desc" :class="{truncate: !descMore}">
                     <label>简介：</label>
-                    {{ detail.data.description }}
+                    <span>{{ detail.data.description }}</span>
                     <i :class="['arrow', 'iconfont', !descMore ? 'icon-arrow-surface-down' : 'icon-arrow-surface-up']" @click="descMore = !descMore"></i>
                 </p>
             </div>
@@ -57,6 +57,7 @@ export default {
         const {detail} = useGetDetailHooks('playlist', GetPlayListDetail, params)
         let creator = computed(() => detail.data.creator || {})
         let descMore = ref(false)
+
         return {
             detail,
             creator,

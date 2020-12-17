@@ -16,7 +16,7 @@ const GetDataHooks = (listKey = '', api, params = {}, config = {}) => {
     let tables = reactive({ 
         loading: false,
         page: 1,
-        pageSize: 10,
+        pageSize: 50,
         total: 0,
         list: [],
         ...config
