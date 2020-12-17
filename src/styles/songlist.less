@@ -1,0 +1,43 @@
+.songlist {
+    &-detail {
+        &-header {
+            position: relative;
+            padding: @gutter-width;
+            padding-left: @gutter-width * 2 + 184px;
+        }
+
+        &-cover {
+            position: absolute;
+            top: @gutter-width;
+            left: @gutter-width;
+            width: 184px;
+            height: 184px;
+            border-radius: @border-radius-middle;
+            overflow: hidden;
+
+            & > img {
+                display: block;
+                width: 100%;
+            }
+        }
+
+        &-title p {
+            height: 30px;
+            line-height: 29px;
+            font-size: @font-size-large;
+            font-weight: bold;
+            padding-left: @gutter-width / 2;
+            color: @text-color-primary;
+        }
+
+        &-author {
+            line-height: 1;
+            padding-top: @gutter-width / 2;
+
+            & > span {
+                padding-left: 10px;
+                color: @text-color-secondary;
+            }
+        }
+    }
+}

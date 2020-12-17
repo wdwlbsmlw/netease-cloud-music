@@ -8,6 +8,8 @@ import NPopover from '@/components/NPopover'
 import NCatlist from '@/components/NCatlist'
 import NFastlist from '@/components/NFastlist'
 import NSearch from '@/components/NSearch'
+import NTag from '@/components/NTag'
+import NAvatar from '@/components/NAvatar'
 
 export default {
     NList,
@@ -19,5 +21,7 @@ export default {
     NPopover,
     NCatlist,
     NFastlist,
-    NSearch
+    NSearch,
+    NTag,
+    NAvatar
 }

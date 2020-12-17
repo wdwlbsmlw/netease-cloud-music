@@ -1,6 +1,6 @@
 <template>
     <div class="nc-box">
-        <div class="nc-box-image" :class="{ 'is-square': isSquare }" :style="imageStyles">
+        <div class="nc-box-image" :class="{ 'is-square': isSquare, 'has-link': hasLink }" :style="imageStyles" @click="onLinkHandle">
             <img v-if="!isSquare" :src="cover">
             <span class="nc-box-playcount"><i class="iconfont icon-play-line"></i> {{ playCountLabel }}</span>
             <span class="nc-box-author"><i class="iconfont icon-account"></i> {{ author.nickname }} <img v-if="author.avatarDetail" :src="author.avatarDetail.identityIconUrl"></span>
@@ -39,6 +39,10 @@ export default {
         isSquare: {
             type: Boolean,
             default: true
+        },
+        link: {
+            type: [Object, String],
+            default: () => ({})
         }
     },
 
@@ -53,9 +57,15 @@ export default {
         let playCountLabel = computed(() => {
             return ctx.$filters.numConvert(props.playCount)
         })
+
+        const hasLink = computed(() => typeof props.link === 'object' ? Object.keys(props.link).length > 0 : props.link !== '')
+        const onLinkHandle = () => ctx.$router.push(props.link)
+
         return {
             imageStyles,
-            playCountLabel
+            playCountLabel,
+            hasLink,
+            onLinkHandle
         }
     }
 }

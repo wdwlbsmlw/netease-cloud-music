@@ -10,6 +10,7 @@ export default [
                 name: 'DiscoverRecommend',
                 component: () => import('@/views/discover/recommend')
             },
+            // 歌单列表
             {
                 path: 'songList',
                 name: 'DiscoverSongList',
@@ -36,5 +37,11 @@ export default [
                 component: () => import('@/views/discover/latestMusic')
             }
         ]
-    }
+    },
+    // 歌单详情
+    {
+        path: '/discover/songList/detail/:id',
+        name: 'DiscoverSongListDetail',
+        component: () => import('@/views/discover/songList/detail.vue')
+    },
 ]

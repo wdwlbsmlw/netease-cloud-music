@@ -12,7 +12,7 @@
         <n-loading v-if="tables.loading"></n-loading>
         <n-list v-if="tables.total > 0" v-show="!tables.loading">
             <n-list-item v-for="item in tables.list" :key="item.id">
-                <n-box :cover="item.coverImgUrl" :name="item.name" :play-count="item.playCount" :author="item.creator"></n-box>
+                <n-box :cover="item.coverImgUrl" :name="item.name" :play-count="item.playCount" :author="item.creator" :link="{name: 'DiscoverSongListDetail', params: { id: item.id }}"></n-box>
             </n-list-item>
         </n-list>
         <n-pager v-show="!tables.loading" :total="tables.total" v-model:page="tables.page" :page-size="tables.pageSize" @change="getList"></n-pager>
