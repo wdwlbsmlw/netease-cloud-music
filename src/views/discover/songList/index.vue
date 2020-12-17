@@ -23,7 +23,7 @@
 /**
  * 歌单（网友推荐）页面
  */
-import { ref, reactive } from 'vue'
+import { ref, reactive, getCurrentInstance } from 'vue'
 import { GetTopPlayList } from '@/api'
 import {useGetDataHooks} from '@/hooks/index'
 
@@ -31,6 +31,9 @@ export default {
     name: 'DiscoverSongList',
 
     setup() {
+        const {ctx} = getCurrentInstance()
+        const route = ctx.$router.currentRoute.value
+
         // 热门列表
         let hotTop = reactive([])
         
@@ -39,7 +42,7 @@ export default {
         const visibleHandle = (val = false) => visible.value = val
 
         // list params
-        let params = reactive({ order: 'hot', cat: '全部' })
+        let params = reactive({ order: 'hot', cat: route.query?.tag || '全部' })
 
         // list hook
         let { tables, getList } = useGetDataHooks('playlists', GetTopPlayList, params)
