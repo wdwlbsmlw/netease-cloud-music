@@ -1,0 +1,43 @@
+.nc-tabs {
+    &-header {
+        padding: 0 @gutter-width;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        &-item {
+            height: 32px;
+            line-height: 30px;
+            margin-right: @gutter-width;
+            position: relative;
+            color: @text-color-primary;
+            cursor: pointer;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 100%;
+                max-width: 44px;
+                height: 3px;
+                background-color: transparent;
+                border-radius: 1px;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            &.active {
+                font-weight: bold;
+
+                &::after {
+                    background-color: @primary-color;
+                }
+            }
+        }
+    }
+
+    &-cont {
+        padding: @gutter-width / 2 0;
+    }
+}

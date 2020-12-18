@@ -10,6 +10,8 @@ import NFastlist from '@/components/NFastlist'
 import NSearch from '@/components/NSearch'
 import NTag from '@/components/NTag'
 import NAvatar from '@/components/NAvatar'
+import NTabs from '@/components/NTabs'
+import NTabsItem from '@/components/NTabs/item.vue'
 
 export default {
     NList,
@@ -23,5 +25,7 @@ export default {
     NFastlist,
     NSearch,
     NTag,
-    NAvatar
+    NAvatar,
+    NTabs,
+    NTabsItem
 }

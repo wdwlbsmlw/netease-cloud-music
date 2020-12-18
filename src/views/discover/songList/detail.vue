@@ -39,6 +39,19 @@
                 </p>
             </div>
         </div>
+        <div class="songlist-detail-cont">
+            <n-tabs v-model="activeTab">
+                <n-tabs-item label="歌曲列表" name="songlist">
+                    歌曲列表
+                </n-tabs-item>
+                <n-tabs-item :label="`评论(${detail.data.commentCount || 0})`" name="comment">
+                    评论
+                </n-tabs-item>
+                <n-tabs-item label="收藏者" name="collector">
+                    收藏者
+                </n-tabs-item>
+            </n-tabs>
+        </div>
     </div>
 </template>
 
@@ -57,11 +70,13 @@ export default {
         const {detail} = useGetDetailHooks('playlist', GetPlayListDetail, params)
         let creator = computed(() => detail.data.creator || {})
         let descMore = ref(false)
+        let activeTab = ref('songlist')
 
         return {
             detail,
             creator,
-            descMore
+            descMore,
+            activeTab
         }
     }
 }
